@@ -9,47 +9,70 @@ import employee.Employee;
 import employee.Skill;
 import employee.Unit;
 
-public class EmployeeTestUsingStrategy {
+
+//Anonymous.
+public class EmployeeTestAnonymous {
 
 	private static final List<Employee> employees = new ArrayList<>();
 
 	public static void main(String args[]) {
 		initialize();
 
-		// 1. Get list of all employees in EDC.
-		System.out.println("----All in EDC----");
+		// 1. Get a list of all employees in EDC.
 
-		List<Employee> allInEdc = getAllEmployeesFilteredBy(new EDCFilter());
-		System.out.println(allInEdc);
+		Unit unit = Unit.EDC;
+		List<Employee> edcEmployees = getEmployeesFilteredBy(new EmployeeFilter() {
 
-		// 2. Get all employees with java skills.
-		System.out.println("----All java developers----");
+			@Override
+			public boolean filterEmployee(Employee employee) {
+				return employee.getUnit() == unit;
+			}
+		});
 
-		List<Employee> allJavaDevelopers = getAllEmployeesFilteredBy(new JavaSkillsFilter());
-		System.out.println(allJavaDevelopers);
+		System.out.println("--------EDC Employees--------");
+		System.out.println(edcEmployees);
 
-		// 3. Get all employees having experience greater than 10 years.
-		System.out.println("----All emp greater than 10 years----");
+		// 2.Get all the java developers.
+		List<Employee> javaDevelopers = getEmployeesFilteredBy(new EmployeeFilter() {
 
-		List<Employee> allHavingGreaterThanTenYearsExp = getAllEmployeesFilteredBy(new SeniorProfessionalsFilter());
-		System.out.println(allHavingGreaterThanTenYearsExp);
+			@Override
+			public boolean filterEmployee(Employee employee) {
+				return employee.getSkills().contains(Skill.JAVA);
+			}
+		});
+
+		System.out.println("--------Java Developers--------");
+		System.out.println(javaDevelopers);
+
+		// 3. Get employees > 10 years experience
+
+		List<Employee> seniorProfessionals = getEmployeesFilteredBy(new EmployeeFilter() {
+
+			@Override
+			public boolean filterEmployee(Employee employee) {
+				return employee.getExperience() > 10;
+			}
+		});
+
+		System.out.println("--------Senior guys--------");
+		System.out.println(seniorProfessionals);
 		
-		//Exercise - Get all the employees who are working as contractors in the organization.
-		// Assume there are 2 types - PERMANENT,CONTRACT
-
+		//Exercise
+		// 4. How will you implement the requirement Java Developers in EDC ? 
+		
 	}
 
-	public static List<Employee> getAllEmployeesFilteredBy(EmployeeFilter filter) {
-		List<Employee> allFiltered = new ArrayList<>();
+	public static List<Employee> getEmployeesFilteredBy(EmployeeFilter filter) {
+
+		List<Employee> filteredEmployees = new ArrayList<>();
 		for (Employee employee : employees) {
 			if (filter.filterEmployee(employee)) {
-				allFiltered.add(employee);
+				filteredEmployees.add(employee);
 			}
 		}
-		return allFiltered;
+		return filteredEmployees;
 	}
 
-	
 	private static void initialize() {
 
 		List<Skill> dev1Skills = new ArrayList<>();
@@ -92,4 +115,5 @@ public class EmployeeTestUsingStrategy {
 		employees.add(new Employee("Pirlo", 13, Designation.ARCHITECT, Unit.EDC, architectSkills));
 
 	}
+
 }

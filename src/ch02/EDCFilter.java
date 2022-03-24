@@ -1,4 +1,4 @@
-package ch02;
+package Ch02;
 
 import employee.Employee;
 import employee.Unit;
