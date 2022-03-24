@@ -1,0 +1,191 @@
+섹션 1: Why should you learn Lambdas and Streams?
+1. Programming is an Art: Difference between Verbose and Concise
+2. Verbose code before Java 8: First solution to Problem one
+3. Concise code starting Java 8: Second solution to Problem one
+4. Verbose code before Java 8: First solution to Problem two
+5. Concise code starting Java 8: Second solution to Problem two
+6. Conclusion - Why you must learn Lambdas and Streams introduced in Java 8
+7. Structure of the course
+8. The "What, Why, How" approach in the course &amp; Prerequisites
+9. About the exercises
+10. Downloading the code
+
+섹션 2: Life before Lambdas
+11. Section Introduction
+12. Tackling requirements in a simple Employee Management System and solving them
+13. Code refactoring - Improving on the first solution
+14. Copy Pasting solutions - Tackling a couple of more requirements
+15. Code walkthrough of the solutions so far
+16. Introduction to the Strategy pattern
+17. Understanding the Strategy pattern
+18. Code walkthrough - Implementing the Strategy pattern
+19. Introduction to anonymous classes
+20. Code refactoring - Replacing the Strategy pattern with anonymous classes
+21. Exercise one - Simulate a simple payment process for a shopping cart
+22. Exercise two  - Payment process for a shopping cart using the Strategy pattern
+
+섹션 3: Beginning our journey with Lambda expressions
+23. Section Introduction
+24. Writing our first Lambda expression
+25. Understanding Lambda expressions
+26. Understanding the relation between lambda expressions and a functional interface
+27. Code refactoring - Replacing an anonymous class with a lambda expression
+28. Code refactoring - Understanding the concept of higher-order functions
+29. Replacing multiple lines of code by using the extract method technique
+30. Exercise - Lambda expressions
+
+섹션 4: Exploring functional interfaces
+31. Section Introduction
+32. Introduction to the Predicate functional interface
+33. Code refactoring - Applying the  Predicate interface
+34. Code - Combining multiple predicates with the Predicate functional interface
+35. Exploring default methods
+36. Exploring the removeIf method, a default method
+37. Introduction to the Supplier functional interface
+38. Code - Implementing the factory pattern using the Supplier functional interface
+39. Code - Understanding ThreadLocal and the Supplier functional interface
+40. Understanding how Java Logging API utilizes Supplier functional interface
+41. Introduction to the Consumer functional interface
+42. Code - Exploring the Consumer functional interface
+43. Code - Understanding the 'andThen' method in the Consumer functional interface
+44. The 'forEach' method and the Consumer functional interface
+45. Code - Understanding how the BiConsumer functional interface is used in the JDK
+46. Code - Introduction to the functional interface, Function
+47. Code - Exploring the 'andThen' method in the Function interface.
+48. Code - Difference between 'andThen' and 'compose' method in Function interface
+49. Code - Applying 'Predicate' and 'Function' together
+50. Code - Understanding the 'computeIfAbsent' method
+51. Summary of Functional interfaces
+52. Exercise - Functional Interface
+
+섹션 5: Deep dive - Understanding how Lambda expressions are implemented in Java
+53. Section Introduction
+54. Peek at the byte code, challenges of running a dynamically typed language on JVM
+55. What is invokedynamic and what problem did it solve?
+56. Laying the groundwork - Understanding MethodHandles
+57. Putting it all together - Lambda expressions, MethodHandles, and invokedynamic
+58. Deep dive into LambdaMetaFactory, capturing, and non-capturing Lambdas.
+59. Translation of Lambda expressions and performance
+
+섹션 6: Exploring Comparators, Method references, lexical scope
+60. Section Introduction
+61. Understanding the concept of "Effectively final"
+62. Understanding lexical scope in Lambda expressions
+63. Finding an answer to the question - "Do Lambdas replace anonymous classes?"
+64. Code - Sorting employee objects using an anonymous class
+65. Code - Refactoring : Replacing the anonymous class with lambda expressions
+66. Code - Refactoring : Using the sort method from the List interface
+67. Code - Understanding comparing, thenComparing, and reversed from Comparator
+68. Code -  Final Refactoring, using comparingInt method from Comparator
+69. Understanding Method references
+70. Code - Refactoring sorting methods to use method references
+71. Exercise 1 - Sorting a list of strings using Comparator
+72. Exercise 2  - Sorting a list of PremierLeagueTeam objects
+
+섹션 7: Introduction to Streams by harnessing Lambdas
+73. Section Introduction
+74. Introduction to stream, filter, and collect methods
+75. Code - Applying stream, filter, and collect using an example
+76. Understand what a stream is and where does this stream live
+77. Introduction to the 'map' method in the Stream API
+78. Code - Applying the 'map' method in an example
+79. Understanding the lazy nature of Streams
+80. Understanding data flow in a Stream pipeline
+81. Introduction to the sorted method in the Stream API
+82. Code - Applying 'sorted' functionality in an example
+83. A look at the nonNull method in the Objects class
+84. Introduction to the distinct method in the Stream API
+85. Code - Applying the 'distinct' method in an example
+86. Stateful vs. Stateless operations in a Stream pipeline
+87. Peeking into the sorted and distinct operations in the Stream pipeline
+88. Exercise - Perform basic Stream API operations around a mock movie database.
+
+섹션 8: Exploring Optional API and the short circuiting operations in the Stream API
+89. Section Introduction
+90. Follow good coding practices - Return an empty list and not a null from a method
+91. Introduction to the Optional API
+92. Exploring the commonly used methods in the Optional class
+93. Understanding the design intention behind the Optional class
+94. Finding the first element of a stream and applying the Optional class
+95. Introduction to the 'map' and 'orElse' method in the Optional class
+96. Introduction to the orElse family of functions in the Optional class
+97. Introduction to the findAny method in the Optional class
+98. Code - Reading a file with lots of words and applying the findFirst and findAny
+99. A look at the anyMatch, allMatch, and noneMatch methods in the Stream API
+100. Introduction to the short-circuiting methods - limit and takeWhile
+101. Recommendations - Using the Optional class
+102. Understanding encounter order in a Stream pipeline
+103. Differences between Streams and Collections
+104. Exercise  - Search Methods in the Stream API
+
+섹션 9: Exploring Reductions in the Stream Pipeline
+105. Section Introduction
+106. Understanding the concept of Reduction
+107. Why  do we need a reduction and the importance of an identity in a reduction
+108. First glimpse of a parallel stream
+109. More examples of a reduce method
+110. Introduction to primitive specializations of streams
+111. Finding the sum of the elements in the Stream using the sum method
+112. Finding the count of elements in a Stream using the count method
+113. Finding the minimum and maximum element in a Stream using the min and max method
+114. Mutable reduction using the 'collect' method
+115. Code - Reading a file with a lot of words and applying the max method
+116. Code - Reading a file with a lot of words and applying the max and min method
+117. Code - Reading a file and applying the sum and count methods
+118. Exercise - Reduction operations
+
+섹션 10: Exploring the Collectors API
+119. Section Introduction - Part one
+120. Section Introduction - Part two
+121. Introduction to the domain and classes in this section - Football teams
+122. Grouping objects using an imperative style of coding
+123. Grouping objects using the declarative style of coding
+124. Collecting the number of input elements in a downstream collector
+125. Finding the sum using a mapper function in a downstream collector
+126. Partitioning the input elements of a stream
+127. Code - Applying the groupingBy method
+128. Code - Example of a multilevel groupingBy
+129. Code - Finding statistics in a single pass using IntSummaryStatistics
+130. Joining the elements of a stream using a collector
+131. Code - Mapping function in a downstream collector
+132. Code - How to partition and then group objects?
+133. Exercise - Using the Collectors class
+
+섹션 11: Understanding flatMap and building streams from other sources
+134. Section Introduction
+135. Exploring the options for building streams
+136. Introduction to the forEach method in the Stream API
+137. Examples of building Streams
+138. How to build a potentially infinite Stream - Part 1
+139. How to build a potentially infinite Stream - Part 2
+140. Introduction to the flatMap method
+141. Understanding the flatMap method - Example one
+142. Feeling confident with flatMap - Example two
+143. Code - How 'not' to use the forEach method?
+144. Exercise - Thinking about flatMap
+
+섹션 12: Exploring Parallel Streams
+145. Section Introduction
+146. Understanding Moore's law
+147. Understanding the structure of a parallel computation
+148. Understanding data flow in a parallel stream - splitting and merging
+149. Code - Processing elements of a list in a parallel stream
+150. Code - 3 solutions to the problem of finding the sum of 100 million numbers
+151. High level overview of AtomicLong
+152. Understanding the importance of an identity in a reduction
+153. Parallel Streams - What is happening behind the scenes?
+154. Code -  A look at the common pool and configuring the size of the pool
+155. Introduction to the Spliterator - Understanding the role in a parallel stream
+156. Understanding the behavior of the findFirst function in a parallel stream
+157. Code - Understanding the behavior of the  findAny function in a parallel stream
+158. Code - Understanding how the collect method operates in a parallel stream
+159. Code - Understanding the behavior of the forEach in a parallel stream
+160. Parallel Stream considerations - Splitting and Merging
+161. When should we use Parallel Streams ?
+162. Why should we use the Stream API ?
+163. Exercise - Total number of prime numbers starting from one up to ten million
+
+섹션 13: Wrapping Up!
+164. Debugging Java 8 Streams with Eclipse
+165. Debugging and Visualizing Java 8 Streams with Intellij
+166. Thank you
