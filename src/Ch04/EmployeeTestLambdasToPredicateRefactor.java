@@ -1,57 +1,59 @@
-package Ch03;
+package Ch04;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import employee.Designation;
 import employee.Employee;
 import employee.Skill;
 import employee.Unit;
 
-public class EmployeeTestAnonymousToRefactor {
+//Lambdas, EmployeeFilter to Predicate.
+public class EmployeeTestLambdasToPredicateRefactor {
+
 	private static final List<Employee> employees = new ArrayList<>();
 
 	public static void main(String args[]) {
 		initialize();
 
-		// 1. Get  list of all employees in EDC.
+		// 1. Get a list of all employees in EDC.
 
 		Unit unit = Unit.EDC;
-		//[Param] -> [body]		
 		
-		EmployeeFilter edcFilter = employee -> employee.getUnit() == unit;
-		List<Employee> edcEmployees = getEmployeesFilteredBy(edcFilter);
+		Predicate<Employee> unitFilter = (Employee employee) ->  employee.getUnit() == unit;
+		List<Employee> edcEmployees = getEmployeesFilteredBy(unitFilter);
 
 		System.out.println("--------EDC Employees--------");
 		System.out.println(edcEmployees);
 
 		// 2.Get all the java developers.
-		EmployeeFilter javaFilter = employee -> employee.getSkills().contains(Skill.JAVA);
-
-		List<Employee> javaDevelopers = getEmployeesFilteredBy(javaFilter);
+		Predicate<Employee>  javasSkillsFilter = (Employee employee) -> employee.getSkills().contains(Skill.JAVA);
+		List<Employee> javaDevelopers = getEmployeesFilteredBy(javasSkillsFilter);
 
 		System.out.println("--------Java Developers--------");
 		System.out.println(javaDevelopers);
 
 		// 3. Get employees > 10 years experience
 
-		EmployeeFilter seniorFilter =   employee -> employee.getExperience() > 10;
-
-		List<Employee> seniorProfessionals = getEmployeesFilteredBy(seniorFilter);
+		Predicate<Employee> seniorProfessionalsFilter = (Employee employee) -> employee.getExperience() > 10;
+		List<Employee> seniorProfessionals = getEmployeesFilteredBy(seniorProfessionalsFilter);
 
 		System.out.println("--------Senior guys--------");
 		System.out.println(seniorProfessionals);
 		
-		//Exercise
-		// 4. How will you implement the requirement Java Developers in EDC ? 
+		// How will you implement the requirement Java Developers in EDC ?
+		List<Employee> unitAndJavaDevelopers = getEmployeesFilteredBy(unitFilter.and(javasSkillsFilter));
+		System.out.println("--------EDC AND JAVA Employees--------");
+		System.out.println(unitAndJavaDevelopers);
 		
 	}
 
-	public static List<Employee> getEmployeesFilteredBy(EmployeeFilter filter) {
+	public static List<Employee> getEmployeesFilteredBy(Predicate<Employee> filter) {
 
 		List<Employee> filteredEmployees = new ArrayList<>();
 		for (Employee employee : employees) {
-			if (filter.filterEmployee(employee)) {
+			if (filter.test(employee)) {
 				filteredEmployees.add(employee);
 			}
 		}
@@ -100,4 +102,5 @@ public class EmployeeTestAnonymousToRefactor {
 		employees.add(new Employee("Pirlo", 13, Designation.ARCHITECT, Unit.EDC, architectSkills));
 
 	}
+
 }
