@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class Ch01Sec004 {
+public class StringSortBefore {
 
 	public static void main(String[] args) {
 		List<String> strings = Arrays.asList("Biggest", "at", "ate","I","apple","ball","cat","rhino","series");
