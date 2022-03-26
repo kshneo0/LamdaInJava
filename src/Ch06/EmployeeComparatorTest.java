@@ -4,7 +4,8 @@ package Ch06;
 public class EmployeeComparatorTest {
 
 	//private static final EmployeeServiceUsual employeeService = new EmployeeServiceUsual();
-	private static final EmployeeServiceLambda employeeService = new EmployeeServiceLambda();
+	//private static final EmployeeServiceLambda employeeService = new EmployeeServiceLambda();
+	private static final EmployeeServiceFinal employeeService = new EmployeeServiceFinal();
 
 	public static void main(String args[]) {
 
