@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import employee.Skill;
 
 
 public class EmployeeService {
@@ -35,6 +36,31 @@ public class EmployeeService {
 			}
 		}
 		return filteredEmployee;
+*/		
+	}
+	
+	/**
+	 * Return list of employee names using map method.
+	 * @param skill -The skill to check.
+	 * @return - List of employee names with angularjs skills.
+	 */
+	public List<String> getEmployeeNamesWith(Skill skill) {
+		
+		List<Employee> employees = EmployeeUtil.initialize();
+		
+		return employees.stream()
+				.filter( employee -> employee.getSkills().contains(skill))
+				.map(Employee::getName)
+				.collect(Collectors.toList());
+/*		
+		List<String> employeeWithAngularJSSkills = new ArrayList<>();
+		
+		for(Employee employee : employees) {
+			if(employee.getSkills().contains(skill)) {
+				employeeWithAngularJSSkills.add(employee.getName());
+			}
+		}
+		return employeeWithAngularJSSkills;
 */		
 	}
 	
