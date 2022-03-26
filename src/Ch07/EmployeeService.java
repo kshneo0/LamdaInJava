@@ -2,6 +2,7 @@ package Ch07;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -62,6 +63,37 @@ public class EmployeeService {
 		}
 		return employeeWithAngularJSSkills;
 */		
+	}
+	
+	/**
+	 * Just for reference, don't name methods like this.
+	 * @return
+	 */
+	public List<String> getEmployeeNamesWithMultipleSkillsImperative() {
+		List<Employee> employees = EmployeeUtil.initialize();
+
+		List<Employee> moreThanOneSkill = new ArrayList<>();
+		for (Employee e : employees) {
+			if (null != e.getSkills() && e.getSkills().size() > 1) {
+				moreThanOneSkill.add(e);
+			}
+		}
+		Collections.sort(moreThanOneSkill, EmployeeSorter.BY_EXPERIENCE);
+		List<String> names = new ArrayList<>();
+		for (Employee e : moreThanOneSkill) {
+			names.add(e.getName());
+		}
+		return names;
+	}
+
+	public List<String> getEmployeeNamesWithMultipleSkillsStreams() {
+		List<Employee> employees = EmployeeUtil.initialize();
+		return employees.stream()
+						//.filter(emp-> Objects.nonNull(emp.getSkills()))
+				        .filter(emp -> null != emp.getSkills() && emp.getSkills().size() >1)
+				        .sorted(EmployeeSorter.BY_EXPERIENCE)
+				        .map( Employee::getName)
+				        .collect(Collectors.toList());
 	}
 	
 }

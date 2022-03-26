@@ -16,9 +16,16 @@ public class EmployeeTestStreams {
 		seniorEmployeesUsingStreams();
 		
 		//map example - get employee name with AngularJS skills.
-				System.out.println("Example of map function");
-				employeeNamesWithAngularJSSkills();
-			
+		System.out.println("Example of map function");
+		employeeNamesWithAngularJSSkills();
+				
+		//Employee names with multiple skills - sorted by exp- old way
+		System.out.println("Sorting using imperative style:");
+		namesWithMultipleSkillsSortedOldWay();
+				
+		//Employee names with multiple skills - sorted by exp - streams
+		System.out.println("Sorting using declarative style:");
+		namesWithMultipleSkillsSortedStreams();	
 	}
 
 	private static void seniorEmployeesUsingStreams() {
@@ -30,6 +37,18 @@ public class EmployeeTestStreams {
 	private static void employeeNamesWithAngularJSSkills() {
 		List<String> angularSkills = employeeService.getEmployeeNamesWith(Skill.ANGULARJS);
 		System.out.println("Employees with angularjs skills : " + angularSkills);
+	}
+	
+	
+	//get emp names sorted by exp level but with more than one skill.
+	private static void namesWithMultipleSkillsSortedOldWay() {
+		List<String> namesWithSkills = employeeService.getEmployeeNamesWithMultipleSkillsImperative();
+		System.out.println(namesWithSkills);
+	}
+
+	private static void namesWithMultipleSkillsSortedStreams() {
+		List<String> namesWithSkillsStreams = employeeService.getEmployeeNamesWithMultipleSkillsStreams();
+		System.out.println(namesWithSkillsStreams);
 	}
 }
 
