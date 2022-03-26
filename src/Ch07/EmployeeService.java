@@ -3,12 +3,15 @@ package Ch07;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import employee.Skill;
+import employee.Unit;
 
 
 public class EmployeeService {
@@ -106,6 +109,49 @@ public class EmployeeService {
 				        .map(employee -> employee.getUnit().getUnitName())	
 				        .distinct()
 				        .collect(Collectors.toList());
+	}
+	
+	public String findEmployeeWithSkillAndMinExp(Skill skill){
+		List<Employee> employees = EmployeeUtil.initialize();
+		return employees.stream()
+		         		.filter(e -> e.getSkills().contains(skill))
+		         		.min(Comparator.comparing(Employee::getExperience))
+		         		.map(e-> e.getName())
+		         		.orElse("No employee found");
+	}
+	
+	//Grouping by unit name
+	public Map<Unit,List<Employee>> findByUnit(){
+		List<Employee> employees = EmployeeUtil.initialize();
+		return employees.stream()
+				        .collect(Collectors.groupingBy(Employee::getUnit));
+	}
+	
+	public Optional<Employee> findEmployee(int id) {
+		List<Employee> employees = EmployeeUtil.initialize();
+		
+		return employees.stream()
+				        .filter(emp -> emp.getId() == id)
+                        .findFirst();
+	}
+	
+	public Optional<Employee> findAnyEmployeeBySkill(Skill skill) {
+
+		List<Employee> employees = EmployeeUtil.initialize();
+		
+		return employees.stream()
+				        .filter(e -> e.getSkills().contains(skill))
+				        .findAny();		
+	}
+	
+	public List<String> getTwoDevelopersWithSkill(Skill skill){
+		List<Employee> employees = EmployeeUtil.initialize();
+		
+		return employees.stream()
+		         		.filter(e ->e.getSkills().contains(skill))
+		         		.map(e -> e.getName())
+		         		.limit(2)
+		         		.collect(Collectors.toList());
 	}
 	
 }

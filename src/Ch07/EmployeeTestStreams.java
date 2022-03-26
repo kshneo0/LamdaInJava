@@ -1,9 +1,13 @@
 package Ch07;
 
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import employee.Skill;
+import employee.Unit;
 
 public class EmployeeTestStreams {
 	
@@ -30,6 +34,25 @@ public class EmployeeTestStreams {
 		//example for distinct
 		List<String> units = employeeService.getUniqueUnitNamesWithJavaSkill();
 		System.out.println("\nDistinct Unit names with Java skills: " + units);
+		
+		//findFirst by id with stream/optional.
+		System.out.println("\nFind first with id : ");
+		findFirstById(1);
+		
+		
+		//findAny with matching skill.
+		System.out.println("\nFind Any with skill : ");
+		findAnyBySkill(Skill.ANGULARJS);
+		
+		//limit - two developers
+		System.out.println("\nLimit : Finding 2 employees with skill : ");
+		limitToTwoBySkill();
+		
+		System.out.println(employeeService.findEmployeeWithSkillAndMinExp(Skill.JAVA));
+		
+		//grouping by unit
+		Map<Unit,List<Employee>> byUnit = employeeService.findByUnit();
+		System.out.println(byUnit);
 	}
 
 	private static void seniorEmployeesUsingStreams() {
@@ -53,6 +76,32 @@ public class EmployeeTestStreams {
 	private static void namesWithMultipleSkillsSortedStreams() {
 		List<String> namesWithSkillsStreams = employeeService.getEmployeeNamesWithMultipleSkillsStreams();
 		System.out.println(namesWithSkillsStreams);
+	}
+	
+	private static void findFirstById(int id) {
+		Optional<Employee> employee = employeeService.findEmployee(id);
+		String name = employee.map(e -> e.getName())
+		           			//.orElse("Unknown Employee")
+		           			//.orElseThrow()
+		                      .orElseThrow(() -> new NoSuchElementException("Could not "
+		                          		+ "find employee with id:"+id));
+		            
+		System.out.println("Finding employee name with id = " + id + ": "+name);
+	}
+	
+	private static void findAnyBySkill(Skill withSkill) {
+		
+		Optional<Employee> empWithSkill = employeeService.findAnyEmployeeBySkill(withSkill);
+		
+		String empNameWithSkill = empWithSkill.map(e -> e.getName())
+		                                      .orElse("No employee found, need to upskill");
+		
+		System.out.println("Employee with required skill = " + withSkill + ": " + empNameWithSkill);
+	}
+	
+	private static void limitToTwoBySkill() {
+		List<String> names = employeeService.getTwoDevelopersWithSkill(Skill.JAVA);
+		System.out.println(names);
 	}
 }
 
