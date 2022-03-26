@@ -4,6 +4,7 @@ package Ch07;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -89,8 +90,9 @@ public class EmployeeService {
 	public List<String> getEmployeeNamesWithMultipleSkillsStreams() {
 		List<Employee> employees = EmployeeUtil.initialize();
 		return employees.stream()
-						//.filter(emp-> Objects.nonNull(emp.getSkills()))
-				        .filter(emp -> null != emp.getSkills() && emp.getSkills().size() >1)
+						.filter(emp-> Objects.nonNull(emp.getSkills()))
+				        .filter(emp -> emp.getSkills().size() >1)
+//				        .filter(emp -> null != emp.getSkills() && emp.getSkills().size() >1)
 				        .sorted(EmployeeSorter.BY_EXPERIENCE)
 				        .map( Employee::getName)
 				        .collect(Collectors.toList());
