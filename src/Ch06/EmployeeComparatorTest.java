@@ -3,7 +3,8 @@ package Ch06;
 //Test class for sorting Employee
 public class EmployeeComparatorTest {
 
-	private static final EmployeeServiceUsual employeeService = new EmployeeServiceUsual();
+	//private static final EmployeeServiceUsual employeeService = new EmployeeServiceUsual();
+	private static final EmployeeServiceLambda employeeService = new EmployeeServiceLambda();
 
 	public static void main(String args[]) {
 
