@@ -67,8 +67,4 @@ public class MovieTest {
 					 .mapToLong(movie -> movie.getGrossEarning())
 					 .sum();
 	}
-
-
-	
-	
 }
