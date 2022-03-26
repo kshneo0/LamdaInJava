@@ -90,11 +90,21 @@ public class EmployeeService {
 	public List<String> getEmployeeNamesWithMultipleSkillsStreams() {
 		List<Employee> employees = EmployeeUtil.initialize();
 		return employees.stream()
-						.filter(emp-> Objects.nonNull(emp.getSkills()))
-				        .filter(emp -> emp.getSkills().size() >1)
-//				        .filter(emp -> null != emp.getSkills() && emp.getSkills().size() >1)
+//						.filter(emp-> Objects.nonNull(emp.getSkills()))
+//				        .filter(emp -> emp.getSkills().size() >1)
+				        .filter(emp -> null != emp.getSkills() && emp.getSkills().size() >1)
 				        .sorted(EmployeeSorter.BY_EXPERIENCE)
 				        .map( Employee::getName)
+				        .collect(Collectors.toList());
+	}
+	
+	// distinct - Get unique names of unit that is based on employee with java skills.
+	public List<String> getUniqueUnitNamesWithJavaSkill() {
+		List<Employee> employees = EmployeeUtil.initialize();
+		return employees.stream()
+				        .filter(employee -> employee.getSkills().contains(Skill.JAVA))
+				        .map(employee -> employee.getUnit().getUnitName())	
+				        .distinct()
 				        .collect(Collectors.toList());
 	}
 	

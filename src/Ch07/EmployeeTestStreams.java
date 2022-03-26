@@ -26,6 +26,10 @@ public class EmployeeTestStreams {
 		//Employee names with multiple skills - sorted by exp - streams
 		System.out.println("Sorting using declarative style:");
 		namesWithMultipleSkillsSortedStreams();	
+		
+		//example for distinct
+		List<String> units = employeeService.getUniqueUnitNamesWithJavaSkill();
+		System.out.println("\nDistinct Unit names with Java skills: " + units);
 	}
 
 	private static void seniorEmployeesUsingStreams() {
