@@ -16,12 +16,12 @@ public class EmployeeSorterFinal {
 	//comparing- pass me the field that I can use to compare objects.
 	
 	public static final Comparator<Employee> BY_NAME_ALPHA =
-			comparing((Employee e) -> e.getName());
+			comparing(Employee::getName);
 	
 	
 	// Comparator for sorting employee by experience.
 	public static final Comparator<Employee> BY_EXPERIENCE =
-			comparingInt((Employee e) -> e.getExperience());
+			comparingInt(Employee::getExperience);
 
 	/**Sort the employees with increasing experience and if they have the same experience, 
 	then we sort them alphabetically by name.*/

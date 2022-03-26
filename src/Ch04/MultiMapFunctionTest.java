@@ -53,7 +53,9 @@ public class MultiMapFunctionTest {
 			// {, [] }
 			// {, [] }
 			// {, [] }
-			cityMap.computeIfAbsent(city.charAt(0), k -> new ArrayList<String>()).add(city);
+			
+			//cityMap.computeIfAbsent(city.charAt(0), k -> new ArrayList<String>()).add(city);
+			cityMap.computeIfAbsent(city.charAt(0), ArrayList::new).add(city);
 		}
 		System.out.println("Using lambdas: ");
 		System.out.println(cityMap);
