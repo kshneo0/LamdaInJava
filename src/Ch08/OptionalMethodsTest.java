@@ -24,4 +24,10 @@ public class OptionalMethodsTest {
 					
 	}
 	
+	private static String getObject() {
+		return "Learning"; // might return null
+	}
+	
+	
+
 }
