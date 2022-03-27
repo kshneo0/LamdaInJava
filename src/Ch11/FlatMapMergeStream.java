@@ -18,8 +18,6 @@ public class FlatMapMergeStream {
 		Stream<List<Integer>> numbers1 = Stream.of(system1,system2,system3);
 		Stream<List<Integer>> numbers2 = Stream.of(system1,system2,system3);
 		
-		
-		
 		// Attempt one.
 		List<List<Integer>> merged = numbers.map(num -> num)
 				                         	.collect(Collectors.toList());
